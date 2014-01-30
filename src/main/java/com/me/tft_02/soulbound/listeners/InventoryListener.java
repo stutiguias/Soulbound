@@ -31,7 +31,7 @@ public class InventoryListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    void onInventoryClick(InventoryClickEvent event) {
+    void onInventoryClickBindOnPickup(InventoryClickEvent event) {
         HumanEntity entity = event.getWhoClicked();
         ItemStack itemStack = event.getCurrentItem();
 
@@ -64,71 +64,9 @@ public class InventoryListener implements Listener {
                 default:
                     if (ItemUtils.isEquipable(itemStack) && event.isShiftClick()) {
                         new UpdateArmorTask(player).runTaskLater(Soulbound.p, 2);
-                        return;
                     }
                     break;
             }
-        }
-    }
-
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-    public void onInventoryClickEvent(InventoryClickEvent event) {
-        HumanEntity entity = event.getWhoClicked();
-        ItemStack itemStack = event.getCurrentItem();
-        InventoryType inventoryType = event.getInventory().getType();
-
-        if (inventoryType == null) {
-            return;
-        }
-
-        ItemType itemType = ItemUtils.getItemType(itemStack);
-
-        if (itemStack == null) {
-            return;
-        }
-
-        if (entity instanceof Player) {
-            Player player = (Player) entity;
-            switch (itemType) {
-                case NORMAL:
-                    return;
-                case SOULBOUND:
-                    if (!Config.getInstance().getAllowItemStoring() && !(inventoryType == InventoryType.CRAFTING)) {
-                        event.setCancelled(true);
-                    }
-
-                    if (!ItemUtils.isBindedPlayer(player, itemStack)) {
-                        if (player.hasPermission("soulbound.pickup.bypass")) {
-                            return;
-                        }
-
-                        event.setCancelled(true);
-                    }
-                    return;
-                default:
-                    return;
-            }
-        }
-    }
-
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-    public void onInventoryMoveEvent(InventoryMoveItemEvent event) {
-        ItemStack itemStack = event.getItem();
-
-        ItemType itemType = ItemUtils.getItemType(itemStack);
-
-        if (itemStack == null) {
-            return;
-        }
-
-        switch (itemType) {
-            case NORMAL:
-                return;
-            case SOULBOUND:
-                event.setCancelled(true);
-                return;
-            default:
-                return;
         }
     }
 

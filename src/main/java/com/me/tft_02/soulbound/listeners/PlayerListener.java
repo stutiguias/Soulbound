@@ -73,7 +73,6 @@ public class PlayerListener implements Listener {
 
         if (ItemsConfig.getInstance().isActionItem(itemStack, ActionType.PICKUP_ITEM)) {
             ItemUtils.soulbindItem(player, itemStack);
-            return;
         }
     }
 
@@ -146,8 +145,7 @@ public class PlayerListener implements Listener {
             return;
         }
 
-        List<ItemStack> items = new ArrayList<ItemStack>();
-        items = PlayerData.retrieveItemsDeath(player);
+        List<ItemStack> items = PlayerData.retrieveItemsDeath(player);
         if (items != null) {
             for (ItemStack item : items) {
                 player.getInventory().addItem(item);

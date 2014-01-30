@@ -1,5 +1,5 @@
 name: Soulbound
-version: ${project.version}-b${BUILD_NUMBER}
+version: ${project.version}
 author: TfT_02
 main: com.me.tft_02.soulbound.Soulbound
 description: Soulbound items for your RPG servers!

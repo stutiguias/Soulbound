@@ -1,19 +1,9 @@
 #
-#  Soulbound configuration
-#  Last updated on ${project.version}-b${BUILD_NUMBER}
-#
-#####
-
-#
 #  Settings for Soulbound in general
 ###
 General:
     # Allow Soulbound to report on basic anonymous usage
     Stats_Tracking: true
-
-    # Allow Soulbound to check if a new version is available
-    Update_Check: true
-    Prefer_Beta: false
 
     # Should Soulbound print out debug messages?
     Verbose_Logging: false
@@ -25,25 +15,8 @@ Soulbound:
     Feedback_Messages_Enabled: true
     Prevent_Item_Drop: false
     Delete_On_Drop: false
-    Allow_Item_Storing: true
     Infinite_Durability: false
     Blocked_Commands:
         /blockedcommand
     Commands_Bind_When_Used:
         /enchant
-
-Dependency_Plugins:
-    DiabloDrops:
-        BindOnPickup: Legendary, Rare, Unidentified
-        BindOnUse: Magical
-        BindOnEquip: Set
-    EpicBossRecoded:
-        BindOnPickup: true
-        BindOnUse: false
-        BindOnEquip: false
-    LoreLocks:
-        Bind_Keys: true
-    MythicDrops:
-        BindOnPickup: common, uncommon, rare
-        BindOnUse: terric, netheric
-        BindOnEquip: endric
