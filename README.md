@@ -1,3 +1,5 @@
+* Remove Chest Protection ( anyone can usa any bind item but only owner don't drop )
+
 [![Soulbound][Banner]][GitHub]
 What is Soulbound?
 ----------------
