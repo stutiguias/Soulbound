@@ -14,6 +14,7 @@ import com.me.tft_02.soulbound.listeners.EntityListener;
 import com.me.tft_02.soulbound.listeners.InventoryListener;
 import com.me.tft_02.soulbound.listeners.PlayerListener;
 import com.me.tft_02.soulbound.util.LogFilter;
+import java.util.logging.Level;
 
 import org.mcstats.Metrics;
 
@@ -83,7 +84,7 @@ public class Soulbound extends JavaPlugin {
     }
 
     public void debug(String message) {
-        getLogger().info("[Debug] " + message);
+        getLogger().log(Level.INFO, "[Debug] {0}", message);
     }
 
     /**

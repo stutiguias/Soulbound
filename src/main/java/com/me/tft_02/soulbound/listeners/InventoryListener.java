@@ -7,7 +7,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.inventory.InventoryPickupItemEvent;
 import org.bukkit.event.inventory.InventoryType;
@@ -16,7 +15,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import com.me.tft_02.soulbound.Soulbound;
-import com.me.tft_02.soulbound.config.Config;
 import com.me.tft_02.soulbound.config.ItemsConfig;
 import com.me.tft_02.soulbound.datatypes.ActionType;
 import com.me.tft_02.soulbound.runnables.UpdateArmorTask;
@@ -79,16 +77,10 @@ public class InventoryListener implements Listener {
         if (itemStack == null) {
             return;
         }
-
-        switch (itemType) {
-            case NORMAL:
-                return;
-            case SOULBOUND:
-                event.setCancelled(true);
-                return;
-            default:
-                return;
-        }
+        
+        if(itemType != ItemType.SOULBOUND) return;
+        
+        event.setCancelled(true);
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
